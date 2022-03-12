@@ -5,7 +5,8 @@ export class Product {
     public price: number,
     public description: string,
     public image: string,
-    public category: string
+    public category: string,
+    public user: string
   ) {}
 }
 
@@ -16,6 +17,7 @@ export interface ProductData {
   description: string;
   image: File | null;
   category: string
+  user: string
 }
 
 export interface ApiProductData {
@@ -24,5 +26,6 @@ export interface ApiProductData {
   price: number,
   description: string,
   image: string,
-  category: string
+  category: string,
+  user: string
 }

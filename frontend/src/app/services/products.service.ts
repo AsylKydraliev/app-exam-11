@@ -22,6 +22,7 @@ export class ProductsService {
             productData.description,
             productData.image,
             productData.category,
+            productData.user,
           );
         });
       })
@@ -39,6 +40,7 @@ export class ProductsService {
             productData.description,
             productData.image,
             productData.category,
+            productData.user,
           );
         });
       })
