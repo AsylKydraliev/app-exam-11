@@ -16,6 +16,7 @@ export class CategoryService {
       map(response => {
         return response.map(data => {
           return new Category(
+            data._id,
             data.title
           );
         });

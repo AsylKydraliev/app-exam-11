@@ -31,6 +31,7 @@ import { productsReducer } from './store/products.reducer';
 import { ProductsEffects } from './store/products.effects';
 import { categoryReducer } from './store/category.reducer';
 import { CategoryEffects } from './store/category.effects';
+import { ProductComponent } from './home/product/product.component';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -48,7 +49,8 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     RegistrationComponent,
     LoginComponent,
     LayoutComponent,
-    ValidateIdenticalDirective
+    ValidateIdenticalDirective,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,9 @@
   <div class="category">
     <h1>Categories</h1>
     <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let category of categories | async" [value]="category.title">
+        <mat-list-option *ngFor="let category of categories | async" [value]="category.title"
+                         [routerLink]="['/category', category._id]"
+        >
           {{ category.title }}
         </mat-list-option>
     </mat-selection-list>

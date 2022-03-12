@@ -1,0 +1,15 @@
+<mat-card *ngFor="let product of products | async">
+  <mat-card-title-group>
+    <mat-card-title>{{ product.title }}</mat-card-title>
+    <mat-card-subtitle>{{ product.price }}</mat-card-subtitle>
+    <img
+      *ngIf="product.image"
+      mat-card-xl-image
+      [src]="apiUrl + '/uploads/' + product.image"
+      alt="{{ product.title }}"
+    >
+  </mat-card-title-group>
+  <mat-card-content>
+    {{ product.description }}
+  </mat-card-content>
+</mat-card>
