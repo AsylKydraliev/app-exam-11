@@ -1,27 +1,27 @@
 <div class="content">
-  <div>
-    <mat-selection-list #shoes [multiple]="false">
-      fdfdfdfdf
-      <!--  <mat-list-option-->
-      <!--    *ngFor="let category of categories | async" [value]="category.title"-->
-      <!--  >-->
-      <!--    {{category.title}}-->
-      <!--  </mat-list-option>-->
+  <div class="category">
+    <h1>Categories</h1>
+    <mat-selection-list [multiple]="false">
+        <mat-list-option *ngFor="let category of categories | async" [value]="category.title">
+          {{ category.title }}
+        </mat-list-option>
     </mat-selection-list>
   </div>
-  <div fxLayout="row" class="products">
+  <div>
     <h1>Products</h1>
-    <mat-card *ngFor="let product of products | async" style="margin: 10px">
-      <mat-card-title-group>
-        <mat-card-title>{{ product.title }}</mat-card-title>
-        <mat-card-subtitle>{{ product.price }}</mat-card-subtitle>
-      </mat-card-title-group>
-      <img
-        *ngIf="product?.image"
-        mat-card-xl-image
-        [src]="apiUrl + '/uploads/' + product.image"
-        alt="{{ product.title }}"
-      >
-    </mat-card>
+    <div fxLayout="row" class="products">
+      <mat-card *ngFor="let product of products | async" style="margin: 10px">
+        <mat-card-title-group>
+          <mat-card-title>{{ product.title }}</mat-card-title>
+          <mat-card-subtitle>Price: <strong>{{ product.price }}</strong></mat-card-subtitle>
+        </mat-card-title-group>
+        <img
+          *ngIf="product?.image"
+          mat-card-xl-image
+          [src]="apiUrl + '/uploads/' + product.image"
+          alt="{{ product.title }}"
+        >
+      </mat-card>
+    </div>
   </div>
 </div>

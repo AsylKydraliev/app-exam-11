@@ -29,6 +29,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { productsReducer } from './store/products.reducer';
 import { ProductsEffects } from './store/products.effects';
+import { categoryReducer } from './store/category.reducer';
+import { CategoryEffects } from './store/category.effects';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -63,9 +65,10 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     HttpClientModule,
     StoreModule.forRoot({
       users: userReducer,
-      products: productsReducer
+      products: productsReducer,
+      category: categoryReducer
     }, {metaReducers}),
-    EffectsModule.forRoot([UsersEffects, ProductsEffects]),
+    EffectsModule.forRoot([UsersEffects, ProductsEffects, CategoryEffects]),
     MatProgressBarModule,
     MatSnackBarModule,
     MatMenuModule,
