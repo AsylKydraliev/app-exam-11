@@ -1,8 +1,8 @@
 <mat-toolbar fxLayoutAlign="space-between center">
   <a routerLink="/" fxLayoutAlign="center">
-    Forum
+    Market
   </a>
-  <div fxLayoutAlign="space-between center" >
+  <div fxLayoutAlign="space-between center" *ngIf="!(user | async) else userMenu">
     <a routerLink="/registration" style="margin-right: 20px">
       Register
     </a>
@@ -15,19 +15,19 @@
   <router-outlet></router-outlet>
 </div>
 
-<!--<ng-template #userMenu>-->
-<!--  <h3>Hello, {{ userData?.name }}!</h3>-->
-<!--  <a routerLink="/addPost" class="addPost">-->
-<!--    Add new post-->
-<!--  </a>-->
-<!--  <nav>-->
-<!--    <button mat-icon-button [matMenuTriggerFor]="menu">-->
-<!--      <mat-icon class="register">account_circle</mat-icon>-->
-<!--    </button>-->
-<!--    <mat-menu #menu="matMenu">-->
-<!--      <button mat-menu-item>Profile</button>-->
-<!--      <button mat-menu-item (click)="logout()">Logout</button>-->
-<!--    </mat-menu>-->
-<!--  </nav>-->
-<!--</ng-template>-->
+<ng-template #userMenu>
+  <h3>Hello, {{ userData?.name }}!</h3>
+  <a routerLink="/addPost" class="addPost">
+    Add new product
+  </a>
+  <nav class="register">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </nav>
+</ng-template>
 

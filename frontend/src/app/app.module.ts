@@ -25,6 +25,8 @@ import { userReducer } from './store/users.reducer';
 import { UsersEffects } from './store/users.effects';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -62,7 +64,9 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     }, {metaReducers}),
     EffectsModule.forRoot([UsersEffects]),
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
