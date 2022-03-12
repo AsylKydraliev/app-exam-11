@@ -11,13 +11,10 @@
     </a>
   </div>
 </mat-toolbar>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
 
 <ng-template #userMenu>
   <h3>Hello, {{ userData?.name }}!</h3>
-  <a routerLink="/addPost" class="addPost">
+  <a routerLink="addProduct/new" class="add">
     Add new product
   </a>
   <nav class="register">

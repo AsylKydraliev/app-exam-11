@@ -6,7 +6,10 @@ export class Product {
     public description: string,
     public image: string,
     public category: string,
-    public user: string
+    public user: {
+      _id: string,
+      name: string,
+    }
   ) {}
 }
 
@@ -18,6 +21,7 @@ export interface ProductData {
   image: File | null;
   category: string
   user: string
+  token: string
 }
 
 export interface ApiProductData {
@@ -27,5 +31,8 @@ export interface ApiProductData {
   description: string,
   image: string,
   category: string,
-  user: string
+  user: {
+    _id: string,
+    name: string,
+  }
 }

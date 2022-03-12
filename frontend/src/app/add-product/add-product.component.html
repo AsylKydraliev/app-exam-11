@@ -1,0 +1,72 @@
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card class="register-form">
+    <mat-card-title>Add new product</mat-card-title>
+    <mat-card-content>
+      <form
+        #f="ngForm"
+        fxLayout="column"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input name="title" required matInput ngModel #title="ngModel"/>
+          <mat-error
+            *ngIf="title.touched && title.hasError('required')"
+          >Title is required!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input name="description" required matInput ngModel #description="ngModel">
+          <mat-error
+            *ngIf="description.touched && description.hasError('required')"
+          >Description is required!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Price</mat-label>
+          <input name="price" required matInput ngModel #price="ngModel">
+          <mat-error
+            *ngIf="price.touched && price.hasError('required')"
+          >Price is required!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Image</mat-label>
+          <app-file-input name="image" required ngModel #image="ngModel"></app-file-input>
+          <mat-error
+            *ngIf="image.touched && image.hasError('required')"
+          >Image is required!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <mat-select name="category" ngModel required>
+            <mat-option [value]="category._id" *ngFor="let category of categories | async">
+              {{ category.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="f.invalid"
+        >Send</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+
+
+
+
+

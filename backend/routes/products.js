@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
 
     if(req.query.category){
       query.category = {_id: req.query.category};
-      const productsByCategory = await Product.find(query).populate("category", "title");
+      const productsByCategory = await Product.find(query).populate("user", "name token");
 
       return res.send(productsByCategory);
     }

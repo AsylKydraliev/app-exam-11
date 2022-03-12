@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiProductData, Product, ProductData } from '../models/product.model';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
@@ -48,6 +48,7 @@ export class ProductsService {
   }
 
   createProduct(productData: ProductData) {
+    console.log(productData)
     const formData = new FormData();
 
     Object.keys(productData).forEach(key => {
@@ -56,6 +57,8 @@ export class ProductsService {
       }
     });
 
-    return this.http.post(environment.apiUrl + '/products', formData);
+    return this.http.post<ApiProductData>(environment.apiUrl + '/products', formData, {
+      headers: new HttpHeaders({'Authorization': productData.token})
+    });
   }
 }

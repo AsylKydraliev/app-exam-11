@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Product } from '../models/product.model';
+import { ApiProductData, Product, ProductData } from '../models/product.model';
 
 export const fetchProductsRequest = createAction('[Products] Fetch Request');
 export const fetchProductsSuccess = createAction(
@@ -8,9 +8,9 @@ export const fetchProductsSuccess = createAction(
 );
 export const fetchProductsFailure = createAction('[Products] Fetch Failure', props<{error: string}>());
 
-// export const createPostsRequest = createAction('[Posts] Create Request', props<{postData: PostData}>());
-// export const createPostsSuccess = createAction('[Posts] Create Success', props<{post: Post}>());
-// export const createPostsFailure = createAction('[Posts] Create Failure', props<{error: {}}>());
+export const createProductRequest = createAction('[Product] Create Request', props<{productData: ProductData}>());
+export const createProductSuccess = createAction('[Product] Create Success', props<{product: ApiProductData}>());
+export const createProductFailure = createAction('[Product] Create Failure', props<{error: {}}>());
 
 export const fetchProductByIdRequest = createAction('[Products] FetchById Request', props<{_id: string}>());
 export const fetchProductByIdSuccess = createAction(

@@ -32,6 +32,9 @@ import { ProductsEffects } from './store/products.effects';
 import { categoryReducer } from './store/category.reducer';
 import { CategoryEffects } from './store/category.effects';
 import { ProductComponent } from './home/product/product.component';
+import { FileInputComponent } from './ui/file-input/file-input.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { MatSelectModule } from '@angular/material/select';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -50,7 +53,9 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     LoginComponent,
     LayoutComponent,
     ValidateIdenticalDirective,
-    ProductComponent
+    ProductComponent,
+    FileInputComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +79,8 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     MatProgressBarModule,
     MatSnackBarModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

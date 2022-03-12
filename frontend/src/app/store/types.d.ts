@@ -15,6 +15,8 @@ export type ProductState = {
   products: Product[],
   fetchLoading: boolean,
   fetchError: null | {},
+  createLoading: boolean,
+  createError: null | {}
 };
 
 export type CategoryState = {
