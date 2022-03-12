@@ -5,6 +5,7 @@ const { nanoid } = require('nanoid');
 const config = require('../config');
 const Product = require("../models/Product");
 const mongoose = require("mongoose");
+const authorization = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -40,7 +41,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', upload.single('image'), async (req, res, next) => {
+router.post('/', authorization, upload.single('image'), async (req, res, next) => {
   try {
     const productData = {
       user: req.body.user,
@@ -56,6 +57,21 @@ router.post('/', upload.single('image'), async (req, res, next) => {
     }
 
     const product = new Product(productData);
+
+    await product.save();
+
+    return res.send(product);
+  } catch (error) {
+    if(error instanceof mongoose.Error.ValidationError){
+      return res.status(400).send(error);
+    }
+    return next(error);
+  }
+});
+
+router.delete('/:id', upload.single('image'), async (req, res, next) => {
+  try {
+    const product = await Product.findByIdAndRemove({_id: req.params.id});
 
     await product.save();
 
