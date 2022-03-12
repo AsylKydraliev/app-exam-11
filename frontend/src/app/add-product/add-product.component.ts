@@ -44,5 +44,4 @@ export class AddProductComponent implements OnInit{
     }
     this.store.dispatch(createProductRequest({productData: product}));
   }
-
 }

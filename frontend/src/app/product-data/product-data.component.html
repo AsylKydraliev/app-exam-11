@@ -1,0 +1,20 @@
+<mat-card *ngIf="newProduct">
+  <mat-card-title-group>
+    <img
+      *ngIf="newProduct.image"
+      mat-card-xl-image
+      [src]="apiUrl + '/uploads/' + newProduct.image"
+      alt="{{ newProduct.title }}"
+    >
+    <mat-card-title>
+      {{ newProduct.title}}
+    </mat-card-title>
+    <mat-card-subtitle>Price: {{ newProduct.price }}</mat-card-subtitle>
+    <mat-card-content>
+      <p>Description: {{ newProduct.description }}</p>
+      <p>Name: {{ newProduct.user.name }}</p>
+      <p>Phone: {{ newProduct.user.phone }}</p>
+    </mat-card-content>
+  </mat-card-title-group>
+</mat-card>
+

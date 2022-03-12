@@ -1,5 +1,5 @@
 import { LoginError, RegisterError, User } from '../models/user.model';
-import { Product } from '../models/product.model';
+import { ApiProductData, Product } from '../models/product.model';
 import { Category } from '../models/category.model';
 
 
@@ -13,6 +13,7 @@ export type UserState = {
 
 export type ProductState = {
   products: Product[],
+  product: ApiProductData | null,
   fetchLoading: boolean,
   fetchError: null | {},
   createLoading: boolean,

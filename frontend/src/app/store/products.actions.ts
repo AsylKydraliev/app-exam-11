@@ -18,3 +18,10 @@ export const fetchProductByIdSuccess = createAction(
   props<{products: Product[]}>()
 );
 export const fetchProductByIdFailure = createAction('[Products] FetchById Failure', props<{error: string}>());
+
+export const fetchProductOneRequest = createAction('[Products] FetchOne Request', props<{_id: string}>());
+export const fetchProductOneSuccess = createAction(
+  '[Products] FetchOne Success',
+  props<{product: ApiProductData | null}>()
+);
+export const fetchProductOneFailure = createAction('[Products] FetchOne Failure', props<{error: string}>());

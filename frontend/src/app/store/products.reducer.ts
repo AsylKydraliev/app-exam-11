@@ -1,9 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   createProductFailure,
-  createProductRequest, createProductSuccess,
+  createProductRequest,
+  createProductSuccess,
   fetchProductByIdFailure,
-  fetchProductByIdRequest, fetchProductByIdSuccess,
+  fetchProductByIdRequest,
+  fetchProductByIdSuccess,
+  fetchProductOneFailure,
+  fetchProductOneRequest,
+  fetchProductOneSuccess,
   fetchProductsFailure,
   fetchProductsRequest,
   fetchProductsSuccess
@@ -12,6 +17,7 @@ import { ProductState } from './types';
 
 const initialState: ProductState = {
   products: [],
+  product: null,
   fetchLoading: false,
   fetchError: null,
   createLoading: false,
@@ -31,4 +37,8 @@ export const productsReducer = createReducer(
   on(createProductRequest, state => ({...state, createLoading: true, createError: null})),
   on(createProductSuccess, (state, {product})  => ({...state, createLoading: false, product})),
   on(createProductFailure, (state, {error}) => ({...state, createLoading: false, createError: error})),
+
+  on(fetchProductOneRequest, state => ({...state, fetchLoading: true})),
+  on(fetchProductOneSuccess, (state, {product}) => ({...state, fetchLoading: false, product})),
+  on(fetchProductOneFailure, (state, {error}) => ({...state, fetchLoading: false, fetchError: error})),
 )

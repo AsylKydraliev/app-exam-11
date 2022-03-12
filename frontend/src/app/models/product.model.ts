@@ -9,6 +9,7 @@ export class Product {
     public user: {
       _id: string,
       name: string,
+      phone: string
     }
   ) {}
 }
@@ -34,5 +35,6 @@ export interface ApiProductData {
   user: {
     _id: string,
     name: string,
+    phone: string,
   }
 }

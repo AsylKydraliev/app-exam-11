@@ -47,8 +47,15 @@ export class ProductsService {
     );
   }
 
+  getOneProduct(id: string) {
+    return this.http.get<ApiProductData>(environment.apiUrl + '/products/' + id).pipe(
+      map(response => {
+        return response;
+      })
+    );
+  }
+
   createProduct(productData: ProductData) {
-    console.log(productData)
     const formData = new FormData();
 
     Object.keys(productData).forEach(key => {

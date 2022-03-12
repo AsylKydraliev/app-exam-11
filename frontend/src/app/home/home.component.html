@@ -23,6 +23,7 @@
           [src]="apiUrl + '/uploads/' + product.image"
           alt="{{ product.title }}"
         >
+        <button mat-button [routerLink]="[product.id, 'product']">View</button>
       </mat-card>
     </div>
   </div>

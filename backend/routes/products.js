@@ -41,6 +41,19 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/:id', async (req, res, next) => {
+  try{
+    const product = await Product.findOne({_id: req.params.id}).populate('user', 'name phone');
+
+    return res.send(product);
+  }catch (error){
+    if(error instanceof mongoose.Error.ValidationError){
+      return res.status(400).send(error);
+    }
+    return next(error);
+  }
+});
+
 router.post('/', authorization, upload.single('image'), async (req, res, next) => {
   try {
     const productData = {

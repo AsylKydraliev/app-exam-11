@@ -35,6 +35,7 @@ import { ProductComponent } from './home/product/product.component';
 import { FileInputComponent } from './ui/file-input/file-input.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ProductDataComponent } from './product-data/product-data.component';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -55,7 +56,8 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     ValidateIdenticalDirective,
     ProductComponent,
     FileInputComponent,
-    AddProductComponent
+    AddProductComponent,
+    ProductDataComponent
   ],
   imports: [
     BrowserModule,

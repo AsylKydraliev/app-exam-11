@@ -6,7 +6,7 @@ import {
   createProductRequest, createProductSuccess,
   fetchProductByIdFailure,
   fetchProductByIdRequest,
-  fetchProductByIdSuccess,
+  fetchProductByIdSuccess, fetchProductOneFailure, fetchProductOneRequest, fetchProductOneSuccess,
   fetchProductsFailure,
   fetchProductsRequest,
   fetchProductsSuccess
@@ -33,6 +33,16 @@ export class ProductsEffects {
       map(products => fetchProductByIdSuccess({products})),
       catchError(() => {
         return of(fetchProductByIdFailure({error: 'Something went wrong!'}));
+      })
+    ))
+  ));
+
+  fetchProductOne = createEffect(() => this.actions.pipe(
+    ofType(fetchProductOneRequest),
+    mergeMap(id => this.productsService.getOneProduct(id._id).pipe(
+      map(product => fetchProductOneSuccess({product})),
+      catchError(() => {
+        return of(fetchProductOneFailure({error: 'Something went wrong!'}));
       })
     ))
   ));
