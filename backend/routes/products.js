@@ -23,19 +23,15 @@ router.get('/', async (req, res, next) => {
   try {
     const query = {};
 
-    const products = await Product.find(query).populate("category", "title");
+    if(req.query.category){
+      query.category = {_id: req.query.category};
+      const productsByCategory = await Product.find(query).populate("category", "title");
+
+      return res.send(productsByCategory);
+    }
+    const products = await Product.find();
 
     return res.send(products);
-  } catch (e) {
-    next(e);
-  }
-});
-
-router.get('/:id', async (req, res, next) => {
-  try {
-    const product = await Product.findById(req.params.id);
-
-    return res.send(product);
   } catch (error) {
     if(error instanceof mongoose.Error.ValidationError){
       return res.status(400).send(error);
@@ -64,8 +60,11 @@ router.post('/', upload.single('image'), async (req, res, next) => {
     await product.save();
 
     return res.send(product);
-  } catch (e) {
-    next(e);
+  } catch (error) {
+    if(error instanceof mongoose.Error.ValidationError){
+      return res.status(400).send(error);
+    }
+    return next(error);
   }
 });
 
