@@ -3,6 +3,7 @@ export interface User {
   email: string,
   name: string,
   password: string,
+  phone: string,
   token: string
 }
 
@@ -10,6 +11,7 @@ export interface UserData {
   email: string,
   name: string,
   password: string
+  phone: string
 }
 
 export interface LoginUserData {

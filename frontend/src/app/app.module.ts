@@ -16,6 +16,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ValidateIdenticalDirective } from './validate-identical.directive';
+import { MatListModule } from '@angular/material/list';
+import { HttpClientModule } from '@angular/common/http';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { localStorageSync } from 'ngrx-store-localstorage';
+import { userReducer } from './store/users.reducer';
+import { UsersEffects } from './store/users.effects';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
+  return localStorageSync({
+    keys: [{users: ['user']}],
+    rehydrate: true
+  })(reducer);
+}
+
+const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
@@ -37,6 +55,14 @@ import { ValidateIdenticalDirective } from './validate-identical.directive';
     MatButtonModule,
     MatInputModule,
     FormsModule,
+    MatListModule,
+    HttpClientModule,
+    StoreModule.forRoot({
+      users: userReducer
+    }, {metaReducers}),
+    EffectsModule.forRoot([UsersEffects]),
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
