@@ -11,7 +11,7 @@ import {
   fetchProductOneSuccess,
   fetchProductsFailure,
   fetchProductsRequest,
-  fetchProductsSuccess
+  fetchProductsSuccess, removeProductFailure, removeProductRequest, removeProductSuccess
 } from './products.actions';
 import { ProductState } from './types';
 
@@ -21,7 +21,9 @@ const initialState: ProductState = {
   fetchLoading: false,
   fetchError: null,
   createLoading: false,
-  createError: null
+  createError: null,
+  removeLoading: false,
+  removeError: null
 };
 
 export const productsReducer = createReducer(
@@ -41,4 +43,14 @@ export const productsReducer = createReducer(
   on(fetchProductOneRequest, state => ({...state, fetchLoading: true})),
   on(fetchProductOneSuccess, (state, {product}) => ({...state, fetchLoading: false, product})),
   on(fetchProductOneFailure, (state, {error}) => ({...state, fetchLoading: false, fetchError: error})),
+
+  on(removeProductRequest, (state, {id}) => {
+    const update = state.products.filter(product => {
+      return product.id !== id;
+    });
+
+    return {...state, tasks: update, removeLoading: true}
+  }),
+  on(removeProductSuccess, state => ({...state, removeLoading: false})),
+  on(removeProductFailure, (state, {error}) => ({...state, removeLoading: true, fetchError: error})),
 )

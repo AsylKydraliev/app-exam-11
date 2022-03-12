@@ -16,5 +16,10 @@
       <p>Phone: {{ newProduct.user.phone }}</p>
     </mat-card-content>
   </mat-card-title-group>
+  <button
+    *ngIf="user | async"
+    mat-raised-button
+    color="warn" (click)="remove(newProduct._id)"
+  >Delete</button>
 </mat-card>
 

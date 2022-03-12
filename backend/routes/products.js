@@ -82,13 +82,17 @@ router.post('/', authorization, upload.single('image'), async (req, res, next) =
   }
 });
 
-router.delete('/:id', upload.single('image'), async (req, res, next) => {
+router.delete('/:id', authorization, upload.single('image'), async (req, res, next) => {
   try {
-    const product = await Product.findByIdAndRemove({_id: req.params.id});
+    const product = await Product.findOne({_id: req.params.id}).populate('user', '_id token');
+    const token = req.get('Authorization');
 
-    await product.save();
+    if(token === product.user.token){
+      const productDelete = await Product.deleteOne({_id: req.params.id});
 
-    return res.send(product);
+      return res.send(productDelete);
+    }
+    return res.status(403).send({error: 'Something went wrong'});
   } catch (error) {
     if(error instanceof mongoose.Error.ValidationError){
       return res.status(400).send(error);

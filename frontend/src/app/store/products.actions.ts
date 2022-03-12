@@ -25,3 +25,10 @@ export const fetchProductOneSuccess = createAction(
   props<{product: ApiProductData | null}>()
 );
 export const fetchProductOneFailure = createAction('[Products] FetchOne Failure', props<{error: string}>());
+
+export const removeProductRequest = createAction(
+  '[Product], Remove Request',
+  props<{ id: string, token: string }>()
+);
+export const removeProductSuccess = createAction('[Product], Remove Success');
+export const removeProductFailure = createAction('[Product], Remove Failure', props<{ error: string }>());

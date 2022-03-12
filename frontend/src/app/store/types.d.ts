@@ -17,7 +17,9 @@ export type ProductState = {
   fetchLoading: boolean,
   fetchError: null | {},
   createLoading: boolean,
-  createError: null | {}
+  createError: null | {},
+  removeLoading: boolean,
+  removeError: null | string
 };
 
 export type CategoryState = {

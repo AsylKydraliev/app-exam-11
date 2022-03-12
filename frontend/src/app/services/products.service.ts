@@ -55,6 +55,12 @@ export class ProductsService {
     );
   }
 
+  removeProduct(id: string, token: string) {
+    return this.http.delete(environment.apiUrl + '/products/' + id, {
+      headers: new HttpHeaders({'Authorization': token})
+    });
+  }
+
   createProduct(productData: ProductData) {
     const formData = new FormData();
 

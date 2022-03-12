@@ -9,7 +9,7 @@ import {
   fetchProductByIdSuccess, fetchProductOneFailure, fetchProductOneRequest, fetchProductOneSuccess,
   fetchProductsFailure,
   fetchProductsRequest,
-  fetchProductsSuccess
+  fetchProductsSuccess, removeProductFailure, removeProductRequest, removeProductSuccess
 } from './products.actions';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -53,13 +53,27 @@ export class ProductsEffects {
       map(product => createProductSuccess({product})),
       tap(() => {
         void this.router.navigate(['/']);
-        this.snackbar.open('Post published', 'OK', {duration: 3000});
+        this.snackbar.open('Product published', 'OK', {duration: 3000});
       }),
       catchError(() => {
         return of(createProductFailure({error: 'Something went wrong!'}));
       })
     ))
   ))
+
+  removeTask = createEffect(() => this.actions.pipe(
+    ofType(removeProductRequest),
+    mergeMap(({id, token}) => this.productsService.removeProduct(id, token).pipe(
+      map(() => removeProductSuccess()),
+      tap(() => {
+        void this.router.navigate(['/']);
+        this.snackbar.open('Product deleted', 'OK', {duration: 3000});
+      }),
+      catchError(() => {
+        return of(removeProductFailure({error: 'Something went wrong'}))
+      })
+    ))
+  ));
 
   constructor(
     private productsService: ProductsService,
