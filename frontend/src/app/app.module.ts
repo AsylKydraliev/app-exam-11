@@ -10,6 +10,11 @@ import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './ui/layout/layout.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,12 @@ import { FlexModule } from '@angular/flex-layout';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    FlexModule
+    FlexModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
