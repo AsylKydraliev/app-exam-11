@@ -20,6 +20,7 @@ export class ProductDataComponent implements OnInit {
   apiUrl = environment.apiUrl;
   newProduct!: ApiProductData;
   userData!: User | null;
+  userId!: string;
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.product = store.select(state => state.products.product);
@@ -33,6 +34,7 @@ export class ProductDataComponent implements OnInit {
     });
     this.user.subscribe(user => {
       this.userData = user;
+      this.userId = <string>user?._id;
     })
     this.route.params.subscribe(params => {
       this.store.dispatch(fetchProductOneRequest({_id: params['id']}));

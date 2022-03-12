@@ -17,7 +17,7 @@
     </mat-card-content>
   </mat-card-title-group>
   <button
-    *ngIf="user | async"
+    *ngIf="userId === newProduct.user._id"
     mat-raised-button
     color="warn" (click)="remove(newProduct._id)"
   >Delete</button>
