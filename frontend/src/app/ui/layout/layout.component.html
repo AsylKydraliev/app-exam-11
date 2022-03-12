@@ -1,0 +1,33 @@
+<mat-toolbar fxLayoutAlign="space-between center">
+  <a routerLink="/" fxLayoutAlign="center">
+    Forum
+  </a>
+  <div fxLayoutAlign="space-between center" >
+    <a routerLink="/registration" style="margin-right: 20px">
+      Register
+    </a>
+    <a routerLink="/login" style="margin-right: 80px">
+      Sign in
+    </a>
+  </div>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<!--<ng-template #userMenu>-->
+<!--  <h3>Hello, {{ userData?.name }}!</h3>-->
+<!--  <a routerLink="/addPost" class="addPost">-->
+<!--    Add new post-->
+<!--  </a>-->
+<!--  <nav>-->
+<!--    <button mat-icon-button [matMenuTriggerFor]="menu">-->
+<!--      <mat-icon class="register">account_circle</mat-icon>-->
+<!--    </button>-->
+<!--    <mat-menu #menu="matMenu">-->
+<!--      <button mat-menu-item>Profile</button>-->
+<!--      <button mat-menu-item (click)="logout()">Logout</button>-->
+<!--    </mat-menu>-->
+<!--  </nav>-->
+<!--</ng-template>-->
+
