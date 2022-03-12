@@ -29,6 +29,10 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    phone: {
+        type: String,
+        required: true,
+    }
 });
 
 const SALT_WORK_FACTOR = 10;

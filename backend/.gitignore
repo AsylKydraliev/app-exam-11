@@ -2,3 +2,4 @@ node_modules
 .idea
 public/uploads/*
 !public/uploads/.gitkeep
+!public/uploads/cpu.png

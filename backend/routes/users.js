@@ -9,7 +9,8 @@ router.post('/', async (req, res, next) => {
         const user = new User({
             email: req.body.email,
             password: req.body.password,
-            name: req.body.name
+            name: req.body.name,
+            phone: req.body.phone
         });
 
         user.generateToken();
